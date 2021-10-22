@@ -9,9 +9,20 @@ router.get('/', async (req,res) => {
 
     try {
         const all_users = await userz.get_all();
-        //res.status(200).json({message: `get all items lol`});
-        res.status(200).json(all_users);
         
+        
+        // sanitized users
+
+        const sanitizedUsers = all_users.map(u=>{
+
+            delete u.password;
+            return{...u}
+
+        })
+        res.json(sanitizedUsers)
+
+
+
     } catch (error) {
         res.status(500).json({message: "A server errors occurred", error: error.sqlMessage});
     }
@@ -26,6 +37,13 @@ router.get('/:id', async (req,res) => {
 
     try {
         const [one_user] = await userz.get_one_by_id(Number(id));
+
+        // sanitized users
+
+        //const sanitizedUser = 
+        delete one_user.password;
+        //return [one_user]
+        res.json(one_user)
         
         //error handling
         if(!one_user){
@@ -54,12 +72,14 @@ router.post('/', async (req,res) => {
     }
 
     try {
-        const chirpResultz = await userz.create({id,name,email}); //Q: is this appropriate?
+        const userResultz = await userz.create({id,name,email}); 
 
-        res.status(201).json({message: "Created Chirp lol", id: chirpResultz.insertId}); /// Q: ??? I don't fully understand this (id: resultz.insertId)
+        res.status(201).json({message: "Created Chirp lol", id: userResultz.insertId}); 
         
     } catch (error) {
         res.status(500).json({message: "A server errors occurred", error: error.sqlMessage});
+        alert('Please check creditials and try again!')
+        console.log('Input not valid, please check your creditials and try again!');
     }
 
 } );

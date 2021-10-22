@@ -1,5 +1,5 @@
 export interface MySQL_Default_Response {
-    insertId:number;  //Q: what is the rationale to use this?
+    insertId:number;  
     affectedRows: number;
 }
 
@@ -18,5 +18,17 @@ export interface Chirps {
     _created?: string;
     userid: Users["id"]   
 }
+
+export interface ChirpsJoined {
+    user_id: number;
+    name: string;
+    email: string;
+    content?: string;
+    id?: number;
+    location?: string;
+    _created?: string;   
+}
+
+
 
 // old Chirps prop= user_id: Users["id"] ,  userid: string;
