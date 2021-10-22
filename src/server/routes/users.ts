@@ -78,7 +78,6 @@ router.post('/', async (req,res) => {
         
     } catch (error) {
         res.status(500).json({message: "A server errors occurred", error: error.sqlMessage});
-        alert('Please check creditials and try again!')
         console.log('Input not valid, please check your creditials and try again!');
     }
 

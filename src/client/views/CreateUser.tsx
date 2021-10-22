@@ -18,14 +18,7 @@ const CreateUser = () => {
    const [user_password, setUser_password]= useState("");
 
 
-/*
 
-new user input needed:
-    
-    name: string;
-    email?: string;
-    password?: string;
-*/
 
     const handleSubmitButton = (e: React.MouseEvent<HTMLButtonElement>)=>{
         e.preventDefault();
@@ -40,7 +33,7 @@ new user input needed:
             },
             body: JSON.stringify({name: user_name, email: user_email, password: user_password  }) // ----------------- need to add values
         })
-            .then(res=>res.json()) // returning parsed metadata
+            .then(res=>res.json()) 
             .then(data=> {
             hist.push(`/overview`)
             
@@ -50,7 +43,7 @@ new user input needed:
             
             console.log(these_hands)
             console.log('Input not valid, please check your creditials and try again!');
-            //hist.push(`/createUser`)
+            //hist.push(`/createUser`) Q: Redirect for duplicate user/email entry- is this the right place? Did not work or provide alert
             alert('Input not valid, please check your creditials and try again!')
             
         })
@@ -66,25 +59,17 @@ return(
         <h1 className="display-3 m-3 text-center">👋 Welcome to the Nest! 🐦 </h1>
         <p className="display-6 m-3 text-center">Create Your Chirper Account Below...</p>
 
-        {/* remove for, change to htmlfor */}
+        
         <div className="row mt-5 justify-content-center ">
 
             <div className="form-group col-6">
-                <input type="text" className="form-control" placeholder = "Username" value={user_name} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setUser_name(e.target.value)}/>
+                <input type="text" className="form-control" placeholder = "Choose your desired Username (cannot be changed once account is created)" value={user_name} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setUser_name(e.target.value)}/>
 
-                
-                
                 <input type="text" className="form-control" placeholder = "email" value={user_email} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setUser_email(e.target.value)}/>
 
-                
                 <input type="password" className="form-control" placeholder = "password" value={user_password} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setUser_password(e.target.value)}/>
 
                 <p> We promise to keep your information safe(kinda)😜</p>
-
-
-            {/* <div onClick={goBack} className="btn m-2 btn-primary">
-                Go Back?
-            </div> */}
 
             <button onClick={handleSubmitButton} className="btn btn-primary m-2 shadow ">Click to Create Account!</button>
             </div>
@@ -93,8 +78,6 @@ return(
             </div>
 
        
-                
-
        </div>
 
 </>

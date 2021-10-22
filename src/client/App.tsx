@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './views/Home';
@@ -51,8 +50,6 @@ const App = ()=> {
 						<CreateUser/>
 					</Route>
 
-
-						
 				
 					{/* Edit Chirp by ID */}
 					<Route exact path="/chirps/:chirp_id/edit"> 

@@ -18,13 +18,4 @@ app.get('*', (req,res) =>{ res.sendFile(path.join(__dirname, '../public/index.ht
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server listening on port: ${port}`));
 
-const lol = async () => {
 
-    try {
-        TalkToMySQL("SELECT 1+?", ["lol"])
-    } catch (error) {
-        console.log({message: "SQL stuff got fucked up", error});
-    }
-}
-
-lol();

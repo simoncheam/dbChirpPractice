@@ -1,4 +1,3 @@
-import e from 'express';
 import * as React from 'react';
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
@@ -30,16 +29,9 @@ const Edit = ()=> {
 
 
 
-        const handleNameUpdate = (eUpdate: React.ChangeEvent<HTMLInputElement>) => {
-
-                setUser(eUpdate.target.value)
-            };
-
-
-
-
 
         // const handleUpdate
+        // note: users cannot change username once account is created
 
 
         const handleUpdate =(e: React.MouseEvent<HTMLButtonElement>)=> {
@@ -58,17 +50,11 @@ const Edit = ()=> {
                 .then(data=>{
                         hist.push(`/chirps/${chirp_id}`)
                         console.log(data);
-
-
                 })
                 .catch(e=>console.log(e))
-
         }
 
         
-
-
-
 // const handleDelete
 
 const handleDelete = (e: React.MouseEvent<HTMLButtonElement>)=>{
@@ -83,16 +69,14 @@ const handleDelete = (e: React.MouseEvent<HTMLButtonElement>)=>{
                 })
                 .then(res=>res.json())
                 .then(()=>{
-                        hist.push(`/`) // need res.status 200 on route for hist.push to work
-                              
+                        hist.push(`/`) 
+                        
                 })
                 .catch(e=>console.log(e))
 
 }
 
     
-
-// useEffect
         useEffect(()=>{
 
                 fetch(`/api/chirps/${chirp_id}`)
@@ -106,21 +90,12 @@ const handleDelete = (e: React.MouseEvent<HTMLButtonElement>)=>{
                         setChirpLocation(data.location)
                         setChirpTime(data._created)
                 
-                        console.log('just data:')
-                        console.log(data)
-
                 })
                 .catch(e=>console.log(e))
 
-
-
         },[]);
 
-
-        if(!chirp ){
-                <h1>Loading...</h1>
-            }
-
+        if(!chirp ){<h1>Loading...</h1>}
 
 
 return(
@@ -133,32 +108,25 @@ return(
 
         <div className="form-group col-6">
 
-                <label > Add your updates below: </label>    
+        <label > Add your updates below: </label>    
                 <div className="form-control input-group-text m-2"  onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setChirpContent(e.target.value)} >
                         <textarea className="form-control input-group-text" value={chirp_content} placeholder = {chirp_content}  ></textarea>
                 </div>
 
-                <label > From (Your Location): </label> 
+        <label > From (Your Location): </label> 
 
                 <input type="text" className="form-control m-2" placeholder = "Where are you writing from today?..." value={chirp_location} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setChirpLocation(e.target.value)}/>
 
-                <label > Last Update: </label>
+        <label > Last Update: </label>
                         <p> {chirp_time}</p>
 
-                        
+                {/* Buttons */}
 
-
-                <div className="m-2">
-
-
-                    <div onClick={goBack} className="btn mx-2 btn-primary">
-                            Go Back?
-                    </div>
-                    <button onClick={handleDelete} className="btn mx-2 btn-danger">Delete!
-                    </button>
-                    <button onClick ={handleUpdate} className="btn btn-Success">Save Updates!</button>
-                </div>
-
+                        <div className="m-2">
+                                <div onClick={goBack} className="btn mx-2 btn-primary">Go Back?</div>
+                                <button onClick={handleDelete} className="btn mx-2 btn-danger">Delete!</button>
+                                <button onClick ={handleUpdate} className="btn btn-Success">Save Updates!</button>
+                        </div>
                 </div>
 
 </div>

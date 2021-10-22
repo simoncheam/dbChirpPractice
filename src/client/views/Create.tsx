@@ -127,9 +127,6 @@ return(
                         <input type="text" className="form-control m-2" placeholder = "Where are you writing from today? (your city, your toilet etc.)..." value={chirp_location} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setChirpLocation(e.target.value)}/>
 
 
-
-
-
                     <div onClick={goBack} className="btn m-2 btn-primary">
                             Go Back?
                     </div>
@@ -142,11 +139,6 @@ return(
                 </div>
 
         </div>
-
-
-
-
-
 
 
 </>

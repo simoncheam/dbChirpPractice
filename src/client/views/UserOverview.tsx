@@ -26,18 +26,42 @@ const UserOverview = () =>{
             <div className="col-md-8">
 
             <h1 className="justify-content-center display-1 text-secondary"> VIP Chirpr Members</h1>
+            <div className="justify-content-center">
+
+                <Link to ={`/createUser`} className=" text-center btn m-2 btn-success ">
+                            Not a Chirpr Member? Join the fam today!
+                </Link>
+            </div>
 
         
             <ul className="justify-content-center list-group m-5">
                 {users.map(user=>(
                     <Link to={`/users/${user.id}`} className="list-group-item" key={`user-${user.id}`}>
-                        {user.name},{user.email},{user.id}, {user._created}
+
+                        <div className="card shadow-lg">
+                    
+                                {/* HEADER */}
+                                <div className="card-header">
+                                    Name: {user?.name}
+                                </div>
+                                {/* BODY */}
+                                <div className="card-body">
+                                    <p> Email: <em>{user?.email}</em></p>
+                                    <p> Created at: <em>{user?._created}</em></p>
+                                    
+
+                                </div>
+                                <div className="card-footer">
+
+                                </div>
+                        </div>
+
                     </Link>
                 ))}
 
             </ul>
 
-            <Link to ={`/createUser`} className="btn m-2 btn-warning">
+            <Link to ={`/createUser`} className="btn m-2 btn-success justify-content-center">
                         Not a Chirpr Member? Join the fam today!
             </Link>
 

@@ -2,7 +2,7 @@ import chirpz from '../database/queries/chirps' //importing SQL query
 import userz from '../database/queries/users' //importing SQL query
 import * as express from 'express';
 import { Chirps, Users } from '../types';
-import users from '../database/queries/users';
+
 
 const router = express.Router();
 
@@ -69,9 +69,7 @@ router.post('/', async (req,res) => {
             return res.status(400).json({message:"Wrong Password!"})
         }
 
-
-
-        // this is where Mention logic
+        // this is where Mention logic is added 
         /*
         const splits = content.split('@')
         */

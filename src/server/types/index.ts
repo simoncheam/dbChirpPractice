@@ -31,4 +31,4 @@ export interface ChirpsJoined {
 
 
 
-// old Chirps prop= user_id: Users["id"] ,  userid: string;
+

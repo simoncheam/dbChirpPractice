@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
-
-import { Users, ChirpsJoined } from "../client_types";
+import { ChirpsJoined } from "../client_types";
 
 
 const Home = () =>{
 
     const [chirps, setChirps] = useState<ChirpsJoined[]>([]);
-    const [users, setUsers] =useState<Users[]>([]);
 
         useEffect(()=>{
             fetch(`/api/chirps`)
